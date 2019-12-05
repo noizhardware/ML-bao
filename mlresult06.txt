@@ -1,0 +1,17 @@
+;; train range: 2019e15-2019k24
+;; test range: 2019k25-2019w04
+;; out soc alca alcc
+;; predict: pro
+;; real world:
+21
+47
+30
+40
+31
+04
+11
+64
+49
+64
+
+;; ML-predicted:
