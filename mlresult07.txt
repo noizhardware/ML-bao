@@ -1,5 +1,5 @@
 ;;
-;;
+;; INCONCLUSIVE
 ;;
 ;; train range: 2019e15-2019k24
 ;; test range: 2019k25-2019w04
@@ -46,5 +46,5 @@
 -35
 -11
 
-mean: 
-abs mean: +/- 
+mean: -27.5
+abs mean: +/- 27.5
