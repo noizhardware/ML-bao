@@ -10,7 +10,7 @@
 11
 64
 
-;; predicted:
+;; ML-predicted:
 40
 34
 60
