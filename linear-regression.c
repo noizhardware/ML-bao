@@ -5,36 +5,45 @@
 
 #define N 244
 
-float Sigma(float x[N]){
-    float Compute;
+//#define DEBUG
+
+float flat(float x[N]){
+    float out;
     int i;
-    Compute = 0;
+    out = 0;
     for (i=0; i<N; i++) {
-        Compute += x[i];
+        out += x[i];
+        #ifdef DEBUG
+        //printf("c%d : %f\n", i, x[i]);
+        #endif // DEBUG
     }
-    return Compute;
+    return out;
 }
 
-float SigmaSquare(float x[N]){
-    float Compute;
+float flatSq(float x[N]){
+    float out;
     uint16_t i;
-    Compute = 0;
+    out = 0;
     for (i=0; i<N; i++) {
-        Compute += x[i] * x[i];
+        out += x[i] * x[i];
+        #ifdef DEBUG
         //printf("c%d : %f\n", i, x[i] * x[i]);
+        #endif // DEBUG
     }
-    return Compute;
+    return out;
 }
 
-float SigmaMulInputs (float x[N],float y[N]){
-    float Compute;
+float flatProduct (float x[N],float y[N]){
+    float out;
     uint16_t i;
-    Compute = 0;
+    out = 0;
     for (i=0; i<N; i++) {
-        Compute += x[i] * y[i];
+        out += x[i] * y[i];
+        #ifdef DEBUG
         //printf("c%d : %f\n", i, x[i] * y[i]);
+        #endif // DEBUG
     }
-    return Compute;
+    return out;
 }
 
 int main()
@@ -50,17 +59,20 @@ int main()
     float y[N] = {20,0,5,15,30,50,32,62,47,25,50,9,7,25,17,24,30,20,10,36,38,89,87,34,18,5,37,27,39,22,10,8,20,20,25,42,32,16,29,61,59,20,13,11,8,8,20,24,64,56,79,10,21,19,15,28,61,21,56,13,19,27,57,78,45,29,49,21,17,20,2,42,42,52,21,39,31,61,54,33,47,70,72,86,69,84,50,62,19,29,67,21,80,20,60,30,20,32,28,62,24,25,29,26,41,35,62,37,25,54,32,45,32,20,21,33,52,27,58,38,80,30,45,89,89,79,93,41,45,31,50,79,47,20,65,70,67,70,76,70,87,67,79,27,73,50,72,64,55,67,41,55,40,32,50,19,60,80,80,70,40,42,12,20,18,20,42,38,27,27,34,55,50,18,11,10,20,15,11,25,50,67,78,67,55,45,12,72,46,69,59,32,60,67,47,47,52,72,91,72,42,67,72,42,77,33,70,85,30,37,27,59,72,80,74,84,80,68,89,61,51,55,72,39,62,41,62,59,52,43,32,40,54,49,74,78,73,35,72,70,72,81,70,52}; // HAP
     float Y;
     
-    SumXY = SigmaMulInputs(x,y);
-    SumX = Sigma (x);
-    SumY = Sigma (y);
-    SumSquareX = SigmaSquare(x);
+    SumXY = flatProduct(x,y);
+    SumX = flat (x);
+    SumY = flat (y);
+    SumSquareX = flatSq(x);
     
     b1 = (SumXY - ((SumX * SumY) / N)) / (SumSquareX - (SumSquareX / 6));
     b0 = (SumY - (b1 * SumX)) / N;
     
     printf ("y = %f * x + %f\n", b1, b0);
     
-    for(newALC = 0; newALC < 300; newALC++){
+    #define tRangeLow 0
+    #define tRangeHi 300
+    
+    for(newALC = tRangeLow; newALC < tRangeHi; newALC++){
          Y = (b1*newALC + b0);
          printf ("With %f ALC >> %f HAP\n", newALC, Y);
      }

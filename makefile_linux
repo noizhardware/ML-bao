@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Werror -g
+CFLAGS = -Wall -Werror -fsanitize=address  -g
 
 .PHONY: clean default learn
 
