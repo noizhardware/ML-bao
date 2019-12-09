@@ -3,7 +3,7 @@
 #include <stdio.h>
 // print arrays
 #define DEBUG
-#define DEBUG2
+//#define DEBUG2
 //#define DEBUG3
 /* By. Leo Scarano
  * Rutgers University 
