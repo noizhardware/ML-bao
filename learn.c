@@ -4,7 +4,7 @@
 // print arrays
 #define DEBUG
 #define DEBUG2
-#define DEBUG3
+//#define DEBUG3
 /* By. Leo Scarano
  * Rutgers University 
  * 2017
