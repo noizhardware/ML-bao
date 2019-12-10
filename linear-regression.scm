@@ -11,6 +11,9 @@
 ; (define x (list 1 2 3 4 5 6 7 8 9 10))
 ; (define y (list 2 4 6 8 10 12 14 16 18 20))
 
+;; compile to executable with Chicken:
+;; csc "R:/Work/git/ML-bao/linear-regression.scm"
+
 ;; y = x + 5
 (define x (list 1 2 3 4 5 6 7 8 9 10))
 (define y (list 6 7 8 9 10 11 12 13 14 15))
@@ -45,3 +48,4 @@
 (display "with x = ") (display x-explanatory) (display " >> ") (display y-dependent) (newline)
 
 (define (predict x) (+ a (* x b)))
+;;(define (byebye) (begin (display "Press any key to terminate...") (newline) (define byebye (read)))
