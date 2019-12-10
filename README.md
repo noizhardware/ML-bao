@@ -1,5 +1,5 @@
 # ML-Bao
-### Small collections of my wanderings in machine learning
+### Small collection of my wanderings in machine learning
 ##### Basically all in Scheme (Chicken Scheme). Trying to start from the basic equations, sometimes having a look at other implementations in C.
 
 ## Currently working:
