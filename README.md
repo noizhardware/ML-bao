@@ -7,6 +7,7 @@
 * Pearson's correlation index
 
 ## TODO:
+* make a library of functions for file-access and parsing//data-preprocessing
 * linear regression with arbitrary-sized matrices
 * time series
 
