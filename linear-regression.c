@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
 
-// now loosely based on https://github.com/SandyDash/LinearRegressionModel/blob/master/LinearRegressionModel.c
 // equations from https://www.statisticshowto.datasciencecentral.com/probability-and-statistics/regression-analysis/find-a-linear-regression-equation/
 // x = explanatory variable
 // y = dependent variable
@@ -12,7 +11,7 @@
 // b = n .... blah blah, see code below...
 
 
-#define N 244
+#define N 10
 
 //#define DEBUG
 
@@ -64,8 +63,15 @@ int main()
     float SumX;
     float SumY;
     float SumSquareX;
+    
+    // y = 2 * x
+    // float x[N] = {1,2,3,4,5,6,7,8,9,10};
+    // float y[N] = {2,4,6,8,10,12,14,16,18,20};
+    
+    // y = x + 5
     float x[N] = {1,2,3,4,5,6,7,8,9,10};
-    float y[N] = {2,4,6,8,10,12,14,16,18,20};
+    float y[N] = {6,7,8,9,10,11,12,13,14,15};
+    
     float Y;
     
     SumXY = flatProduct(x,y);
@@ -76,7 +82,7 @@ int main()
     //b = (SumXY - ((SumX * SumY) / N)) / (SumSquareX);
     //a = (SumY - (b * SumX)) / N;
     
-    a = (flat(y)*flatSq(x) - flat(x)*flatProduct(x,y)) / (N*flatSq(x)-flatSq(x)*flatSq(x));
+    a = (flat(y)*flatSq(x) - flat(x)*flatProduct(x,y)) / (N*flatSq(x)-flat(x)*flat(x));
     b = (N*flatProduct(x,y) - flat(x)*flat(y)) / (N*flatSq(x)-flat(x)*flat(x));
     
     printf ("y = %f * x + %f\n", b, a);
