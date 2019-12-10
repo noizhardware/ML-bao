@@ -7,17 +7,17 @@
 ;; a = (SUM(y) * SUM(x * x) - SUM(x) * SUM( x + y)) / (n * SUM(x * x) - SUM(x) * SUM(x))
 ;; b = n .... blah blah, see code below...
 
-
-;;(define N 10)
+;; y = x * 2
 ; (define x (list 1 2 3 4 5 6 7 8 9 10))
 ; (define y (list 2 4 6 8 10 12 14 16 18 20))
 
+;; y = x + 5
 (define x (list 1 2 3 4 5 6 7 8 9 10))
 (define y (list 6 7 8 9 10 11 12 13 14 15))
-(if (equal? (length x) (length y))
-     (define N (length x))
-          (error "input vectors must be of the same size!"))
 
+(if (equal? (length x) (length y))
+     (define N (length x)) ;; N is input vector size
+          (error "input vectors must be of the same size!"))
 
 (define (flat list)
           (if (equal? (length list) 0)
