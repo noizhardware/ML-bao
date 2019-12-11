@@ -37,15 +37,15 @@
                0
                     (+ (* (car list1) (car list2)) (flat-product (cdr list1) (cdr list2)))))
 
-(define a ( / ( - (* (flat y) ( flat-square x)) (* (flat x) (flat-product x y))) ( - (* N ( flat-square x)) (* (flat x) (flat x))))) ;; y-intercept
-(define b ( / ( - (* N (flat-product x y)) (* (flat x) (flat y))) ( - (* N  (flat-square x)) (* (flat x) (flat x))))) ;; slope
+(define (a x y) ( / ( - (* (flat y) ( flat-square x)) (* (flat x) (flat-product x y))) ( - (* N ( flat-square x)) (* (flat x) (flat x))))) ;; y-intercept
+(define (b x y) ( / ( - (* N (flat-product x y)) (* (flat x) (flat y))) ( - (* N  (flat-square x)) (* (flat x) (flat x))))) ;; slope
 
 (define x-explanatory 10)
-(define y-dependent (+ a (* x-explanatory b)))
+(define y-dependent (+ (a x y) (* x-explanatory (b x y))))
 
 (define (correlation-pearson x y) ( / (- (* N (flat-product x y)) (* (flat x) (flat y))) (sqrt (* (- (* N (flat-square x)) (* (flat x) (flat x))) (- (* N (flat-square y)) (* (flat y) (flat y)))))) )
 
 (display "with x = ") (display x-explanatory) (display " >> ") (display y-dependent) (newline)
 
-(define (predict x) (+ a (* x b)))
+(define (predict new-x train-x train-y) (+ (a train-x train-y) (* new-x (b train-x train-y))))
 ;;(define (byebye) (begin (display "Press any key to terminate...") (newline) (define byebye (read)))
