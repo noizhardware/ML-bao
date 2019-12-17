@@ -1,0 +1,4 @@
+$ cat .gitattributes
+*.c linguist-detectable=false
+*.scm linguist-detectable=true
+*.scm linguist-language=Scheme
