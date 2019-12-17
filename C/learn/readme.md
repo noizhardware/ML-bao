@@ -12,19 +12,26 @@ of squared residuals, or "data fits" the systems of equations in order to find w
 associated with the data. The weights are then applied to test data, which consists of
 solely house attributes in order to estimate the cost of a house. 
 
-<h3>Usage</h3>
+### Usage
 
 Compiling and linking necessary files is made simple using the "make" command in terminal:
-<br>
-<br>
-<pre>$make</pre>
-<br>
 
-Runnint the program is accomplished by initializing the following terminal command:
-<br>
-<br>
-<pre>$./learn <em>train_file</em>.txt <em>test_file</em>.txt</pre>
-<br>
+`$make`
+
+If you need to compile for win64, you can cross/compile fron linux (Ubuntu):
+Install mingw:
+~~~~
+sudo apt-get install mingw-w64
+sudo apt-get update
+~~~~
+And to compile use:
+`x86_64-w64-mingw32-g++ -o learnWin.exe learn.c`
+
+
+Running the program is accomplished by initializing the following terminal command:
+
+`$./learn <em>train_file</em>.txt <em>test_file</em>.txt`
+
 
 ## Test files structure:
 num(number of not-to-predict elements for each group)
@@ -47,13 +54,12 @@ example:
 423,645,321,65
 ~~~~
 
-<h3>Implementation</h3>
+### Implementation
 
 Calculating the weights needed to estimate the house cost is done by computing the 
 Moore-Penrose "pseudoinverse." the equation is as follows: 
-<br>
-<em>W = (XTT * X)^−1 * X^T * Y</em>
-<br>
-<br>
+
+`W = (XTT * X)^−1 * X^T * Y`
+
 
 
