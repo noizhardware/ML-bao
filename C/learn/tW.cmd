@@ -1,0 +1,1 @@
+learnWin.exe mltrain08.txt mltest08.txt
