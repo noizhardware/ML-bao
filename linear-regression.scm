@@ -15,35 +15,50 @@
 ;; csc "R:/Work/git/ML-bao/linear-regression.scm"
 
 ;; y = x + 5
-(define x (list 1 2 3 4 5 6 7 8 9 10))
-(define y (list 6 7 8 9 10 11 12 13 14 15))
+(define x (vector 1 2 3 4 5 6 7 8 9 10))
+(define y (vector 6 7 8 9 10 11 12 13 14 15))
 
-(if (equal? (length x) (length y))
-     (define N (length x)) ;; N is input vector size
+(if (equal? (vector-length x) (vector-length y))
+     (define N (vector-length x)) ;; N is input vector size
           (error "input vectors must be of the same size!"))
+          
+(define (cdr-vec vec) (list->vector(cdr (vector->list vec))))
 
 (define (flat list)
           (if (equal? (length list) 0)
                0
                     (+ (car list) (flat (cdr list)))))
+(define (flat-v vec)
+          (if (equal? (vector-length vec) 0)
+               0
+                    (+ (vector-ref vec 0) (flat-v (cdr-vec vec)))))
                     
 (define (flat-square list)
           (if (equal? (length list) 0)
                0
                     (+ (* (car list) (car list)) (flat-square (cdr list)))))
+(define (flat-square-v vec)
+          (if (equal? (vector-length vec) 0)
+               0
+                    (+ (* (vector-ref vec 0) (vector-ref vec 0)) (flat-square-v (cdr-vec vec)))))
                     
 (define (flat-product list1 list2)
           (if (equal? (length list1) 0)
                0
                     (+ (* (car list1) (car list2)) (flat-product (cdr list1) (cdr list2)))))
+(define (flat-product-v v1 v2)
+          (if (equal? (vector-length v1) 0)
+               0
+                    (+ (* (vector-ref v1 0) (vector-ref v2 0)) (flat-product-v (cdr-vec v1) (cdr-vec v2)))))
 
-(define (a x y) ( / ( - (* (flat y) ( flat-square x)) (* (flat x) (flat-product x y))) ( - (* N ( flat-square x)) (* (flat x) (flat x))))) ;; y-intercept
-(define (b x y) ( / ( - (* N (flat-product x y)) (* (flat x) (flat y))) ( - (* N  (flat-square x)) (* (flat x) (flat x))))) ;; slope
+(define (a x y) ( / ( - (* (flat-v y) ( flat-square-v x)) (* (flat-v x) (flat-product-v x y))) ( - (* N ( flat-square-v x)) (* (flat-v x) (flat-v x))))) ;; y-intercept
+(define (b x y) ( / ( - (* N (flat-product-v x y)) (* (flat-v x) (flat-v y))) ( - (* N  (flat-square-v x)) (* (flat-v x) (flat-v x))))) ;; slope
 
 (define x-explanatory 10)
 (define y-dependent (+ (a x y) (* x-explanatory (b x y))))
 
 (define (correlation-pearson x y) ( / (- (* N (flat-product x y)) (* (flat x) (flat y))) (sqrt (* (- (* N (flat-square x)) (* (flat x) (flat x))) (- (* N (flat-square y)) (* (flat y) (flat y)))))) )
+(define (correlation-pearson-v x y) ( / (- (* N (flat-product-v x y)) (* (flat-v x) (flat-v y))) (sqrt (* (- (* N (flat-square-v x)) (* (flat-v x) (flat-v x))) (- (* N (flat-square-v y)) (* (flat-v y) (flat-v y)))))) )
 
 (display "with x = ") (display x-explanatory) (display " >> ") (display y-dependent) (newline)
 
