@@ -30,7 +30,7 @@ And to compile use:
 
 Running the program is accomplished by initializing the following terminal command:
 
-`$./learn <em>train_file</em>.txt <em>test_file</em>.txt`
+`./learn train_file.txt test_file.txt`
 
 
 ## Test files structure:

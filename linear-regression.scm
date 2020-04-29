@@ -13,6 +13,8 @@
 
 ;; compile to executable with Chicken:
 ;; csc "R:/Work/git/ML-bao/linear-regression.scm"
+;; load with chicken-iup:
+;; (load "R:/Work/git/ML-bao/linear-regression.scm")
 
 ;; y = x + 5
 (define x (vector 1 2 3 4 5 6 7 8 9 10))
